@@ -61,7 +61,29 @@ public class CompanyController extends Controller {
 
     @FXML
     public void insertClick(ActionEvent actionEvent) {
-
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("create-company-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 640, 270);
+            Stage stage = new Stage();
+            stage.setTitle("Create Company");
+            stage.setScene(scene);
+            stage.show();
+            insertBtn.setDisable(true);
+            updateBtn.setDisable(true);
+            deleteBtn.setDisable(true);
+            stage.setOnCloseRequest(event -> {
+                insertBtn.setDisable(false);
+                updateBtn.setDisable(false);
+                deleteBtn.setDisable(false);
+                try {
+                    loadFromServer();
+                } catch (IOException e) {
+                    error("Hiba történt a szerverrel való kommunikáció során");
+                }
+            });
+        } catch (IOException e) {
+            error("A szerverről nem lehetett adatot lekérni", e.getMessage());
+        }
     }
 
     @FXML
