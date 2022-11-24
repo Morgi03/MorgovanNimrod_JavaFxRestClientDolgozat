@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 
-public class CompanyController {
+public class CompanyController extends Controller {
 
     @FXML
     private TableColumn<Company, String> phoneCol;
@@ -41,7 +41,7 @@ public class CompanyController {
             try {
                 loadFromServer();
             } catch (IOException e) {
-              //TODO: error
+                error("A szerverről nem lehetett adatot lekérni", e.getMessage());
                 Platform.exit();
             }
         });
@@ -57,7 +57,6 @@ public class CompanyController {
             companyTable.getItems().add(company);
         }
     }
-
 
     @FXML
     public void insertClick(ActionEvent actionEvent) {

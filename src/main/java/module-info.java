@@ -4,6 +4,6 @@ module hu.petrik.morgovannimrod_javafxrestclientdolgozat {
     requires com.google.gson;
 
 
-    opens hu.petrik.morgovannimrod_javafxrestclientdolgozat to javafx.fxml;
+    opens hu.petrik.morgovannimrod_javafxrestclientdolgozat to javafx.fxml, com.google.gson;
     exports hu.petrik.morgovannimrod_javafxrestclientdolgozat;
 }

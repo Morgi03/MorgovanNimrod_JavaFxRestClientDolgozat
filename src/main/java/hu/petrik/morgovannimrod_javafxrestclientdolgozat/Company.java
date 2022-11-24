@@ -1,11 +1,22 @@
 package hu.petrik.morgovannimrod_javafxrestclientdolgozat;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Company {
-    int id;
-    String companyName;
-    String companyPhone;
-    int totalEmployee;
-    String creditCard;
+    private int id;
+    @Expose
+    @SerializedName("Company Name")
+    private String companyName;
+    @Expose
+    @SerializedName("Phone Number")
+    private String companyPhone;
+    @Expose
+    @SerializedName("Total Employee")
+    private int totalEmployee;
+    @Expose
+    @SerializedName("Credit Card")
+    private String creditCard;
 
     public Company(int id, String companyName, String companyPhone, int totalEmployee, String creditCard) {
         this.id = id;

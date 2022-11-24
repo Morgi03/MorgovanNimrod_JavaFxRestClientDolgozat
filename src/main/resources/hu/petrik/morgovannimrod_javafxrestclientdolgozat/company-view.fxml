@@ -31,10 +31,10 @@
         </HBox>
         <TableView fx:id="companyTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn fx:id="nameCol" minWidth="126.0" prefWidth="126.0" text="Company Name" />
-                <TableColumn fx:id="phoneCol" minWidth="192.0" prefWidth="192.0" text="Phone Number" />
-            <TableColumn fx:id="totalemployeeCol" minWidth="102.0" prefWidth="102.0" text="Total Employee" />
-                <TableColumn fx:id="creditcardCol" maxWidth="1.7976931348623157E308" minWidth="325.0" prefWidth="419.0" text="Credit Card" />
+                <TableColumn fx:id="nameCol" minWidth="126.0" prefWidth="126.0"  text="Company Name" />
+                <TableColumn fx:id="phoneCol" minWidth="192.0" prefWidth="192.0" style="-fx-alignment: CENTER;" text="Phone Number" />
+            <TableColumn fx:id="totalemployeeCol" minWidth="102.0" prefWidth="102.0" style="-fx-alignment: CENTER;" text="Total Employee" />
+                <TableColumn fx:id="creditcardCol" maxWidth="1.7976931348623157E308" minWidth="325.0" prefWidth="419.0" style="-fx-alignment: CENTER;" text="Credit Card" />
             </columns>
         </TableView>
     </children>
