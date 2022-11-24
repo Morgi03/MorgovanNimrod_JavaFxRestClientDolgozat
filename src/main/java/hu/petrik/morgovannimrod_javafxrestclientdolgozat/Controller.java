@@ -3,6 +3,7 @@ package hu.petrik.morgovannimrod_javafxrestclientdolgozat;
 import javafx.scene.control.Alert;
 
 public abstract class Controller {
+
     protected void error(String headerText) {
         error(headerText, "");
     }

@@ -3,14 +3,15 @@ package hu.petrik.morgovannimrod_javafxrestclientdolgozat;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import com.google.gson.Gson;
+import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class CompanyController extends Controller {
 
@@ -60,10 +61,35 @@ public class CompanyController extends Controller {
 
     @FXML
     public void insertClick(ActionEvent actionEvent) {
+
     }
 
     @FXML
     public void deleteClick(ActionEvent actionEvent) {
+        int selectedIndex = companyTable.getSelectionModel().getSelectedIndex();
+        if (selectedIndex == -1) {
+            warning("Elősszőr válassz ki egy vállalatot a törléshez");
+            return;
+        }
+
+        Company selected = companyTable.getSelectionModel().getSelectedItem();
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setHeaderText(String.format("Biztosan szeretnéd törölni a(z) %s nevű vállalatot?", selected.getCompanyName()));
+        Optional<ButtonType> optionalButtonType = confirmation.showAndWait();
+        if (optionalButtonType.isEmpty()) {
+            System.err.println("Ismeretlen hiba történt");
+            return;
+        }
+        ButtonType clickedButton = optionalButtonType.get();
+        if (clickedButton.equals(ButtonType.OK)) {
+            String url = App.BASE_URL + "/" + selected.getId();
+            try {
+                RequestHandler.delete(url);
+                loadFromServer();
+            } catch (IOException e) {
+                error("Hiba történt a szerverrel való kommunikáció során");
+            }
+        }
     }
 
     @FXML
