@@ -10,19 +10,19 @@ import javafx.scene.control.TableView;
 public class CompanyController {
 
     @FXML
-    private TableColumn phoneCol;
+    private TableColumn<Company, String> phoneCol;
     @FXML
     private Button updateBtn;
     @FXML
-    private TableColumn totalemployeeCol;
+    private TableColumn<Company, Integer>  totalemployeeCol;
     @FXML
     private Button insertBtn;
     @FXML
-    private TableColumn nameCol;
+    private TableColumn<Company, String>  nameCol;
     @FXML
-    private TableView companyTable;
+    private TableView<Company> companyTable;
     @FXML
-    private TableColumn creditcardCol;
+    private TableColumn<Company, String>  creditcardCol;
     @FXML
     private Button deleteBtn;
 
