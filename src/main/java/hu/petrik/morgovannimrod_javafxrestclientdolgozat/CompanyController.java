@@ -116,5 +116,37 @@ public class CompanyController extends Controller {
 
     @FXML
     public void updateClick(ActionEvent actionEvent) {
+
+        int selectedIndex = companyTable.getSelectionModel().getSelectedIndex();
+        if (selectedIndex == -1) {
+            warning("Elősszőr válassz ki egy vállalatot a módosításhoz");
+            return;
+        }
+        Company selected = companyTable.getSelectionModel().getSelectedItem();
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("update-company-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 640, 480);
+            Stage stage = new Stage();
+            stage.setTitle("Update Company");
+            stage.setScene(scene);
+            UpdateCompanyController controller = fxmlLoader.getController();
+            controller.setCompany(selected);
+            stage.show();
+            insertBtn.setDisable(true);
+            updateBtn.setDisable(true);
+            deleteBtn.setDisable(true);
+            stage.setOnHidden(event -> {
+                insertBtn.setDisable(false);
+                updateBtn.setDisable(false);
+                deleteBtn.setDisable(false);
+                try {
+                    loadFromServer();
+                } catch (IOException e) {
+                    error("Hiba történt a szerverrel való kommunikáció során");
+                }
+            });
+        } catch (IOException e) {
+            error("A szerverről nem lehetett adatot lekérni", e.getMessage());
+        }
     }
 }
